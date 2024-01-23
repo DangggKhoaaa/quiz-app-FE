@@ -1,17 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import Header from './components/Header';
 
 const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Header />
             <Image source={require('../assets/favicon.png')} style={styles.image} />
             <View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Đăng nhập')}>
                     <Text style={styles.buttonText}>Đăng nhập</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Singup')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Đăng ký')}>
                     <Text style={styles.buttonText}>Đăng ký</Text>
                 </TouchableOpacity>
             </View>

@@ -2,14 +2,15 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const LoginScreen = () => {
+const SignupScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#ffff" barStyle="dark-content" />
-            <View>
-                <Text style={styles.title}>Bạn cần đăng nhập để tới trang tiếp theo</Text>
-            </View>
             <View style={styles.form}>
+                <View style={styles.group}>
+                    <Icon name="user-secret" size={30} color="gray" style={styles.icon} />
+                    <TextInput placeholder='Họ và tên' style={styles.input} />
+                </View>
                 <View style={styles.group}>
                     <Icon name="user" size={30} color="gray" style={styles.icon} />
                     <TextInput placeholder='Tài khoản' style={styles.input} />
@@ -18,12 +19,13 @@ const LoginScreen = () => {
                     <Icon name="lock" size={30} color="gray" style={styles.icon} />
                     <TextInput placeholder='Mật khẩu' style={styles.input} secureTextEntry={true} />
                 </View>
+                <View style={styles.group}>
+                    <Icon name="lock" size={30} color="gray" style={styles.icon} />
+                    <TextInput placeholder='Nhập lại mật khẩu' style={styles.input} secureTextEntry={true} />
+                </View>
                 <View style={styles.buttonGroup}>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Đăng nhập</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { backgroundColor: 'red' }]}>
-                        <Text style={styles.buttonText}><Icon name="google" size={25} color="white" style={styles.icon} /> Google</Text>
+                        <Text style={styles.buttonText}>Đăng ký</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -39,9 +41,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50
     },
     title: {
-        fontSize: 20,
+        fontSize: 40,
+        fontWeight: 'bold',
         textAlign: 'center',
-        color: 'red',
     },
     form: {
         marginBottom: 50
@@ -79,4 +81,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default SignupScreen;
