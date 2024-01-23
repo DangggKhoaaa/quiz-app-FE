@@ -1,8 +1,14 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
+    const navigation = useNavigation();
+    const handleLogin = () => {
+        navigation.navigate('Class');
+    };
+    const data = {}
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#ffff" barStyle="dark-content" />
@@ -19,7 +25,7 @@ const LoginScreen = () => {
                     <TextInput placeholder='Mật khẩu' style={styles.input} secureTextEntry={true} />
                 </View>
                 <View style={styles.buttonGroup}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
                         <Text style={styles.buttonText}>Đăng nhập</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.button, { backgroundColor: 'red' }]}>
