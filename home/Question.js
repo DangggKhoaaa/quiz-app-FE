@@ -108,18 +108,28 @@ const Question = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>{data.content}</Text>
             {
-                submitted ?
-                    <View style={styles.group}>
-                        <Text style={styles.title}>{"Điểm: " + score}</Text>
+                questions.length > 0 ?
+                    <View>
+                        <Text style={styles.title}>{data.content}</Text>
+                        {
+                            submitted ?
+                                <View style={styles.group}>
+                                    <Text style={styles.title}>{"Điểm: " + score}</Text>
+                                </View>
+                                :
+                                <View style={styles.group}>
+                                    <Icon name="rocket" size={30} color="gray" style={styles.icon} />
+                                    <Text style={styles.title}>{formatTime(seconds)}</Text>
+                                </View>
+                        }
                     </View>
                     :
-                    <View style={styles.group}>
-                        <Icon name="rocket" size={30} color="gray" style={styles.icon} />
-                        <Text style={styles.title}>{formatTime(seconds)}</Text>
+                    <View>
+                        <Text style={styles.title}>Không có dữ liệu</Text>
                     </View>
             }
+
             <FlatList
                 data={questions}
                 renderItem={({ item: question, index }) => (
@@ -157,18 +167,21 @@ const Question = () => {
                 )}
                 keyExtractor={question => question.id}
                 ListFooterComponent={() => (
-                    <View style={styles.buttonGroup}>
-                        {
-                            submitted ?
-                                <TouchableOpacity style={styles.button} onPress={handleRetry}>
-                                    <Text style={styles.buttonText}>Làm lại</Text>
-                                </TouchableOpacity>
-                                :
-                                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                                    <Text style={styles.buttonText}>Nộp bài</Text>
-                                </TouchableOpacity>
-                        }
-                    </View>
+                    questions.length > 0 ?
+                        <View style={styles.buttonGroup}>
+                            {
+                                submitted ?
+                                    <TouchableOpacity style={styles.button} onPress={handleRetry}>
+                                        <Text style={styles.buttonText}>Làm lại</Text>
+                                    </TouchableOpacity>
+                                    :
+                                    <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                                        <Text style={styles.buttonText}>Nộp bài</Text>
+                                    </TouchableOpacity>
+                            }
+                        </View>
+                        :
+                        ""
                 )}
             />
         </SafeAreaView>
