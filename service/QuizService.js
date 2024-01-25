@@ -1,2 +1,6 @@
-export const API_CLASS = "http://192.168.1.67:8080/api/client/classes";
-export const API_SUBJECT = "http://192.168.1.67:8080/api/client/subjects/";
+const IP = "http://192.168.1.67:8080/";
+export const API_CLASS = IP + "api/client/classes";
+export const API_SUBJECT = IP + "api/client/subjects/";
+export const API_QUIZ = IP + "api/client/quizzes/";
+export const API_QUESTION = IP + "api/client/questions/";
+export const API_SCORE = IP + "api/client/userQuiz";

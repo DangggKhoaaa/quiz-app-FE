@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Image source={require('../assets/favicon.png')} style={styles.image} />
+            <Image source={require('../assets/logo.jpg')} style={styles.image} />
             <View>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Đăng nhập')}>
                     <Text style={styles.buttonText}>Đăng nhập</Text>
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
         color: 'red'
     },
     image: {
-        width: 200,
-        height: 200
+        width: "100%",
+        height: "35%"
     },
     button: {
         backgroundColor: '#007bff',

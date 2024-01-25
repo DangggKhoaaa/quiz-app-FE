@@ -2,34 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { API_SUBJECT } from '../service/QuizService';
+import { API_QUIZ } from '../service/QuizService';
 import axios from 'axios';
 
-const Subject = () => {
-    const [subjects, setSubjects] = useState([]);
+const Quiz = () => {
+    const [quizzes, setQuizzes] = useState([]);
     const route = useRoute();
     const navigation = useNavigation();
 
     const data = route.params?.data;
 
     useEffect(() => {
-        axios(API_SUBJECT + data.id)
+        axios(API_QUIZ + data.id)
             .then(e => {
-                setSubjects(e.data)
+                setQuizzes(e.data)
             }).catch(e => console.log(e.message))
     }, [data.id]);
 
-    const handleSubjectId = (data) => {
-        navigation.navigate('Chương', { data });
+    const handleQuizId = (data) => {
+        navigation.navigate('Câu hỏi', { data })
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#ffff" barStyle="dark-content" />
             {
-                subjects.length > 0 ?
+                quizzes.length > 0 ?
                     <View>
-                        <Text style={styles.title}>Vui lòng chọn môn học</Text>
+                        <Text style={styles.title}>Vui lòng chọn chương</Text>
                     </View>
                     :
                     <View>
@@ -37,11 +37,11 @@ const Subject = () => {
                     </View>
             }
             <FlatList
-                data={subjects}
+                data={quizzes}
                 renderItem={({ item }) =>
                     <View style={styles.buttonGroup}>
-                        <TouchableOpacity key={item.id} style={styles.button} onPress={() => handleSubjectId(item)}>
-                            <Text style={styles.buttonText}>{item.subjectName + " " + data.className}</Text>
+                        <TouchableOpacity key={item.id} style={styles.button} onPress={() => handleQuizId(item)}>
+                            <Text style={styles.buttonText}>{data.subjectName + " - " + item.content}</Text>
                         </TouchableOpacity>
                     </View>
                 }
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 5,
         marginTop: 30,
-        width: 170
+        width: 220
     },
     buttonText: {
         color: '#fff',
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Subject;
+export default Quiz;

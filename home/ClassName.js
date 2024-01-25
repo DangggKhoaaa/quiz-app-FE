@@ -4,7 +4,6 @@ import { SafeAreaView, StatusBar, StyleSheet, View, Text, TouchableOpacity, Flat
 import { useNavigation } from '@react-navigation/native';
 import { API_CLASS } from '../service/QuizService';
 
-
 const ClassName = () => {
     const [classList, setClassList] = useState([]);
     const navigation = useNavigation();
@@ -26,9 +25,16 @@ const ClassName = () => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor="#ffff" barStyle="dark-content" />
-            <View>
-                <Text style={styles.title}>Vui lòng chọn lớp</Text>
-            </View>
+            {
+                classList.length > 0 ?
+                    <View>
+                        <Text style={styles.title}>Vui lòng chọn lớp</Text>
+                    </View>
+                    :
+                    <View>
+                        <Text style={styles.title}>Không có dữ liệu</Text>
+                    </View>
+            }
             <FlatList
                 data={classList}
                 renderItem={({ item }) =>
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center'
-    },
+    }
 });
 
 export default ClassName;

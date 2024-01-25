@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignupScreen from "./home/SignupScreen";
 import ClassName from "./home/ClassName";
 import Subject from "./home/Subject";
+import Quiz from "./home/Quiz";
+import Question from "./home/Question";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +44,28 @@ export default function App() {
           component={Subject}
           options={{
             headerTitle: 'Môn học',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontSize: 24
+            }
+          }}
+        />
+        <Stack.Screen
+          name="Chương"
+          component={Quiz}
+          options={{
+            headerTitle: 'Chương',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontSize: 24
+            }
+          }}
+        />
+        <Stack.Screen
+          name="Câu hỏi"
+          component={Question}
+          options={{
+            headerTitle: 'Câu hỏi',
             headerTitleAlign: 'center',
             headerTitleStyle: {
               fontSize: 24
