@@ -85,7 +85,7 @@ const Question = () => {
         } else {
             axios.post(API_SCORE, selectedAnswers)
                 .then(response => {
-                    Alert.alert('Thông báo', 'Bạn đã được ' + response.data.score + ' điểm!', [
+                    Alert.alert('Thông báo', 'Bạn đã đúng ' + response.data.score + '/' + questions.length + ' câu!', [
                         { text: 'OK', onPress: () => console.log('OK Pressed') },
                     ], { textStyle: { fontSize: 30 } });
                     setScore(response.data.score);
@@ -101,7 +101,7 @@ const Question = () => {
     const handleRetry = () => {
         setSelectedAnswers([]);
         setScore(0);
-        // setSeconds(60);
+        setSeconds(10);
         setSubmitted(false);
         getAllQuestion();
     }
@@ -115,7 +115,7 @@ const Question = () => {
                         {
                             submitted ?
                                 <View style={styles.group}>
-                                    <Text style={styles.title}>{"Điểm: " + score}</Text>
+                                    <Text style={styles.title}>{"Điểm: " + (score / questions.length * 10).toFixed(1)}</Text>
                                 </View>
                                 :
                                 <View style={styles.group}>
